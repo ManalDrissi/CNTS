@@ -24,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
         new Donner("aymen", "+A", "26/04/2021", 2),
         new Donner("aymen", "+A", "26/04/2021", 2),
         new Donner("aymen", "+A", "26/04/2021", 2),
-        new Donner("aymen", "+A", "26/04/2021", 2)
+            new Donner("aymen", "+A", "26/04/2021", 2),
+            new Donner("aymen", "+A", "26/04/2021", 2),
+            new Donner("aymen", "+A", "26/04/2021", 2),
+            new Donner("aymen", "+A", "26/04/2021", 2),
+            new Donner("aymen", "+A", "26/04/2021", 2),
+            new Donner("aymen", "+A", "26/04/2021", 2)
     ));
 
     @Override
