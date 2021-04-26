@@ -2,6 +2,7 @@ package com.example.cnts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +27,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
     TextInputLayout dateInput;
     TextInputLayout phoneInput;
 
-    Button submitButton;
+    Button submitButton,cancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,14 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 name = nameInput.getEditText().getText().toString();
                 phone = phoneInput.getEditText().getText().toString();
                 date = dateInput.getEditText().getText().toString();
+            }
+        });
+        cancelButton = (Button)findViewById(R.id.cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View V) {
+                final Intent intent = new Intent(Form.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         for(int i = 0; i < btn.length; i++){
