@@ -33,6 +33,13 @@ public class DonnerAdapter extends ArrayAdapter<Donner> {
         date.setText(donner.getCreationDate());
         donnated.setText(donner.getDonated().toString());
 
+        rowView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("test", donner.toString());
+            }
+        });
+
         return rowView;
     }
 }
