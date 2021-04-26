@@ -39,8 +39,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="212dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginStart="204dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/roboto"
             android:text="DashBoard"
             android:textSize="24sp"
@@ -59,6 +59,28 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="17dp"
+            android:background="#D80032"
+            android:backgroundTint="#D80032"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <ScrollView
+            android:layout_width="411dp"
+            android:layout_height="530dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,26 +101,6 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center">
 
-        <ScrollView
-            android:layout_width="411dp"
-            android:layout_height="530dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D80032"
-            android:backgroundTint="#D80032"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="199dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

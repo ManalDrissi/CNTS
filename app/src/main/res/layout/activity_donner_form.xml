@@ -6,29 +6,24 @@
     android:backgroundTint="#FFFCFC"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/decorlight"
-        android:layout_width="224dp"
-        android:layout_height="224dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="256dp"
-        android:layout_marginRight="256dp"
-        android:layout_marginBottom="564dp"
-        android:background="@drawable/decorlight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="160dp"
+        android:layout_height="152dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logomini" />
+        app:srcCompat="@drawable/intersect" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="56dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Name"
