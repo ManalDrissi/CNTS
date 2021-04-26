@@ -21,7 +21,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
     private int[] btn_id = {R.id.typeA, R.id.typeB, R.id.typeAB, R.id.typeO};
     private int[] btn_id_type = {R.id.positive, R.id.negative};
 
-    String name , phone , date;
+    String name , phone , date,type,value;
     TextInputLayout nameInput;
     TextInputLayout dateInput;
     TextInputLayout phoneInput;
@@ -43,8 +43,6 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 name = nameInput.getEditText().getText().toString();
                 phone = phoneInput.getEditText().getText().toString();
                 date = dateInput.getEditText().getText().toString();
-
-                showToast(name);
             }
         });
         for(int i = 0; i < btn.length; i++){
@@ -109,6 +107,7 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
         btn_focus.setTextColor(Color.parseColor("#FFFFFF"));
         btn_focus.setBackgroundColor(Color.parseColor("#D80032"));
         this.btn_unfocus = btn_focus;
+        this.type = btn_focus.getText().toString();
     }
     private void setTypeFocus(Button btn_type_unfocus, Button btn_type_focus){
         btn_type_unfocus.setTextColor(Color.parseColor("#434343"));
@@ -116,9 +115,10 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
         btn_type_focus.setTextColor(Color.parseColor("#FFFFFF"));
         btn_type_focus.setBackgroundColor(Color.parseColor("#D80032"));
         this.btn_type_unfocus = btn_type_focus;
+        this.value = btn_type_focus.getText().toString();
     }
 
     private void showToast(String text) {
-        Toast.makeText(Form.this,text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(Form.this,text,Toast.LENGTH_LONG).show();
     }
 }
