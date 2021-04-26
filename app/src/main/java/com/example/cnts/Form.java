@@ -70,6 +70,8 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
 
         btn_unfocus = btn[0];
         btn_type_unfocus = btn_type[0];
+        setFocus(btn_unfocus, btn[0]);
+        setTypeFocus(btn_type_unfocus, btn_type[0]);
     }
 
 
