@@ -11,14 +11,30 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public ArrayList<Donner> Donners = new ArrayList<Donner>(List.of(
+        new Donner("aymen", "+A", "26/04/2021", 2),
+        new Donner("aymen", "+A", "26/04/2021", 2),
+        new Donner("aymen", "+A", "26/04/2021", 2),
+        new Donner("aymen", "+A", "26/04/2021", 2),
+        new Donner("aymen", "+A", "26/04/2021", 2),
+        new Donner("aymen", "+A", "26/04/2021", 2)
+    ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DonnerAdapter adapter = new DonnerAdapter(this, Donners);
+        ListView list = (ListView) findViewById(R.id.donner_list);
+        list.setAdapter(adapter);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
