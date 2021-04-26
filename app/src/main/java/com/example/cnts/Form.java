@@ -1,17 +1,25 @@
 package com.example.cnts;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Form extends AppCompatActivity implements View.OnClickListener {
     private Button[] btn = new Button[4];
     private Button[] btn_type = new Button[2];
@@ -29,10 +37,15 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
 
     Button submitButton,cancelButton;
 
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+
+        mDatabase = FirebaseDatabase.getInstance("https://cnts-da2eb-default-rtdb.firebaseio.com").getReference();
+
         nameInput = (TextInputLayout)findViewById(R.id.Name);
         phoneInput = (TextInputLayout)findViewById(R.id.Phone);
         dateInput = (TextInputLayout)findViewById(R.id.BirthDate);
@@ -41,9 +54,13 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                LocalDateTime now = LocalDateTime.now();
                 name = nameInput.getEditText().getText().toString();
                 phone = phoneInput.getEditText().getText().toString();
                 date = dateInput.getEditText().getText().toString();
+                Donner donnerTest = new Donner(String.valueOf(UUID.randomUUID()),name,phone,type,1.5,1.5,date, dtf.format(now), 0);
+                mDatabase.child("Donners").child(String.valueOf(UUID.randomUUID())).setValue(donnerTest);
             }
         });
         cancelButton = (Button)findViewById(R.id.cancel);

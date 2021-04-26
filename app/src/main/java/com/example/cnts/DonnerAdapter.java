@@ -28,10 +28,10 @@ public class DonnerAdapter extends ArrayAdapter<Donner> {
         TextView date = (TextView) rowView.findViewById(R.id.date);
         TextView donnated = (TextView) rowView.findViewById(R.id.donnated);
 
-        name.setText(donner.Name);
-        bloodType.setText(donner.BloodType);
-        date.setText(donner.CreationDate);
-        donnated.setText(donner.Donated.toString());
+        name.setText(donner.getName());
+        bloodType.setText(donner.getBloodType());
+        date.setText(donner.getCreationDate());
+        donnated.setText(donner.getDonated().toString());
 
         return rowView;
     }
