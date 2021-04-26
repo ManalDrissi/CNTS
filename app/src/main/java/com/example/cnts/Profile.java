@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Profile extends AppCompatActivity {
-    Button callButton;
+    Button callButton,sendSMS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +22,16 @@ public class Profile extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse(s));
                 startActivity(intent);
+            }
+        });
+        sendSMS = (Button)findViewById(R.id.request);
+        sendSMS.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View V) {
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.putExtra("sms_body", "default content");
+                sendIntent.setType("vnd.android-dir/mms-sms");
+                startActivity(sendIntent);
             }
         });
     }
