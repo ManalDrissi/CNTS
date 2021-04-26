@@ -72,14 +72,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/divider"
-            tools:layout_editor_absoluteX="0dp">
-    <ListView
-        android:id="@+id/donner_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+            android:layout_height="521dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <ListView
+                android:id="@+id/donner_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
 
         </ScrollView>
 
@@ -95,14 +95,6 @@
         app:rippleColor="#D80032"
         app:srcCompat="@drawable/add_icon"
         app:tint="@color/white" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="center">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
