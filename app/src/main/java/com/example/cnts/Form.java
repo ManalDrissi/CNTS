@@ -61,6 +61,8 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 date = dateInput.getEditText().getText().toString();
                 Donner donnerTest = new Donner(String.valueOf(UUID.randomUUID()),name,phone,type,1.5,1.5,date, dtf.format(now), 0);
                 mDatabase.child("Donners").child(String.valueOf(UUID.randomUUID())).setValue(donnerTest);
+                final Intent intent = new Intent(Form.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         cancelButton = (Button)findViewById(R.id.cancel);
