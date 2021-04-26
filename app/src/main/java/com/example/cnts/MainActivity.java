@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
@@ -25,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity();
+                final Intent intent = new Intent(MainActivity.this, Form.class);
+                startActivity(intent);
             }
         });
     }
@@ -35,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-    public void openNewActivity(){
-        Intent intent = new Intent(this, DonnerForm.class);
-        startActivity(intent);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
