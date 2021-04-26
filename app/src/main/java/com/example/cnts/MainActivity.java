@@ -48,11 +48,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<HashMap<String,Donner>> t=  new GenericTypeIndicator<HashMap<String,Donner>>() { };
-                HashMap<String, Donner> data = dataSnapshot.child("Donners").getValue(t);
-                ArrayList<Donner> valuesList = new ArrayList<Donner>(data.values());
-                Donners.clear();
-                Donners.addAll(valuesList);
-                adapter.notifyDataSetChanged();
+                try{
+                    HashMap<String, Donner> data = dataSnapshot.child("Donners").getValue(t);
+                    ArrayList<Donner> valuesList = new ArrayList<Donner>(data.values());
+                    Donners.clear();
+                    Donners.addAll(valuesList);
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

@@ -59,8 +59,9 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 name = nameInput.getEditText().getText().toString();
                 phone = phoneInput.getEditText().getText().toString();
                 date = dateInput.getEditText().getText().toString();
-                Donner donnerTest = new Donner(String.valueOf(UUID.randomUUID()),name,phone,type,1.5,1.5,date, dtf.format(now), 0);
-                mDatabase.child("Donners").child(String.valueOf(UUID.randomUUID())).setValue(donnerTest);
+                String uid = String.valueOf(UUID.randomUUID());
+                Donner donnerTest = new Donner(uid,name,phone,type,1.5,1.5,date, dtf.format(now), 0);
+                mDatabase.child("Donners").child(uid).setValue(donnerTest);
                 final Intent intent = new Intent(Form.this, MainActivity.class);
                 startActivity(intent);
             }
