@@ -27,7 +27,7 @@ public class Profile extends AppCompatActivity {
     Button callButton,sendSMS,addDonation;
     String uid;
     private DatabaseReference mDatabase;
-
+    Donner DonnerData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class Profile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<HashMap<String,Donner>> t=  new GenericTypeIndicator<HashMap<String,Donner>>() { };
                 HashMap<String, Donner> data = dataSnapshot.child("Donners").getValue(t);
-                Donner DonnerData = data.get(uid);
+                DonnerData = data.get(uid);
                 TextView name = findViewById(R.id.nameDonnerProfile);
                 TextView bloodtype =  findViewById(R.id.bloodtype);
                 TextView donations =  findViewById(R.id.donations);
@@ -85,7 +85,8 @@ public class Profile extends AppCompatActivity {
         addDonation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V) {
-                    
+                DonnerData.setDonated(DonnerData.getDonated() + 1);
+                mDatabase.child("Donners").child(uid).setValue(DonnerData);
             }
         });
     }
