@@ -1,14 +1,17 @@
 package com.example.cnts;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,18 +23,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class Profile extends AppCompatActivity {
     Button callButton,sendSMS,addDonation;
     String uid;
     private DatabaseReference mDatabase;
     Donner DonnerData;
+    public ArrayList<Donnation> Donations = new ArrayList<Donnation>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        DonnationAdapter adapter = new DonnationAdapter(this, Donations);
+        ListView list = (ListView) findViewById(R.id.donation_list);
+        list.setAdapter(adapter);
 
         Bundle b = getIntent().getExtras();
         if(b != null) uid = b.getString("uid");
@@ -51,6 +62,13 @@ public class Profile extends AppCompatActivity {
                 donations.setText(String.valueOf(DonnerData.getDonated()));
                 weight.setText(String.valueOf(DonnerData.getWeight()));
                 height.setText(String.valueOf(DonnerData.getHeight()));
+                GenericTypeIndicator<HashMap<String,Donnation>> donnationsGeneric  =  new GenericTypeIndicator<HashMap<String,Donnation>>() { };
+                HashMap<String, Donnation> donationsData = dataSnapshot.child("Donations").getValue(donnationsGeneric);
+                ArrayList<Donnation> valuesList = new ArrayList<Donnation>(donationsData.values());
+                Log.e("donations : ", String.valueOf(valuesList));
+                Donations.clear();
+                Donations.addAll(valuesList);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -83,10 +101,17 @@ public class Profile extends AppCompatActivity {
         });
         addDonation = (Button)findViewById(R.id.addDonation);
         addDonation.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View V) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm");
+                LocalDateTime nowTime = LocalDateTime.now();
                 DonnerData.setDonated(DonnerData.getDonated() + 1);
                 mDatabase.child("Donners").child(uid).setValue(DonnerData);
+                Donnation donationData = new Donnation("Center Transfusion Sanguine - Rabat", dtf.format(now), dtfTime.format(nowTime), uid);
+                mDatabase.child("Donations").child(String.valueOf(UUID.randomUUID())).setValue(donationData);
             }
         });
     }

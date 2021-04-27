@@ -20,7 +20,7 @@ public class DonnationAdapter extends ArrayAdapter<Donnation> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.donner, parent, false);
+        View rowView = inflater.inflate(R.layout.donation, parent, false);
 
         Donnation donnation = getItem(position);
         TextView center = (TextView) rowView.findViewById(R.id.centerDonation);
