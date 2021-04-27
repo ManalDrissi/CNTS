@@ -30,11 +30,18 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
     private int[] btn_id = {R.id.typeA, R.id.typeB, R.id.typeAB, R.id.typeO};
     private int[] btn_id_type = {R.id.positive, R.id.negative};
 
-    String name , phone , date,type,value;
+    String name;
+    String phone;
+    String date;
+    String type;
+    String value;
+    double height;
+    double weight;
     TextInputLayout nameInput;
     TextInputLayout dateInput;
     TextInputLayout phoneInput;
-
+    TextInputLayout heightInput;
+    TextInputLayout weightInput;
     Button submitButton,cancelButton;
 
     private DatabaseReference mDatabase;
@@ -49,6 +56,8 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
         nameInput = (TextInputLayout)findViewById(R.id.Name);
         phoneInput = (TextInputLayout)findViewById(R.id.Phone);
         dateInput = (TextInputLayout)findViewById(R.id.BirthDate);
+        heightInput = (TextInputLayout)findViewById(R.id.Height);
+        weightInput = (TextInputLayout)findViewById(R.id.Weight);
 
         submitButton = (Button)findViewById(R.id.submit);
         submitButton.setOnClickListener(new View.OnClickListener(){
@@ -59,8 +68,10 @@ public class Form extends AppCompatActivity implements View.OnClickListener {
                 name = nameInput.getEditText().getText().toString();
                 phone = phoneInput.getEditText().getText().toString();
                 date = dateInput.getEditText().getText().toString();
+                height = Double.parseDouble(heightInput.getEditText().getText().toString());
+                weight = Double.parseDouble(weightInput.getEditText().getText().toString());
                 String uid = String.valueOf(UUID.randomUUID());
-                Donner donnerTest = new Donner(uid,name,phone,type,1.5,1.5,date, dtf.format(now), 0);
+                Donner donnerTest = new Donner(uid,name,phone,type,weight,height,date, dtf.format(now), 0);
                 mDatabase.child("Donners").child(uid).setValue(donnerTest);
                 final Intent intent = new Intent(Form.this, MainActivity.class);
                 startActivity(intent);

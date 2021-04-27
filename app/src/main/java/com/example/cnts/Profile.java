@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Profile extends AppCompatActivity {
-    Button callButton,sendSMS;
+    Button callButton,sendSMS,addDonation;
     String uid;
     private DatabaseReference mDatabase;
 
@@ -79,6 +79,13 @@ public class Profile extends AppCompatActivity {
                 sendIntent.putExtra("sms_body", "default content");
                 sendIntent.setType("vnd.android-dir/mms-sms");
                 startActivity(sendIntent);
+            }
+        });
+        addDonation = (Button)findViewById(R.id.addDonation);
+        addDonation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View V) {
+                    
             }
         });
     }

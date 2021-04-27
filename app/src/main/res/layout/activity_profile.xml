@@ -171,5 +171,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView6" />
 
+    <Button
+        android:id="@+id/addDonation"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#03A9F4"
+        android:text="Add donation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="427dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
