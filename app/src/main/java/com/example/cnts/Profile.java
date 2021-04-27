@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Profile extends AppCompatActivity {
     Button callButton,sendSMS,addDonation;
@@ -64,8 +65,12 @@ public class Profile extends AppCompatActivity {
                 height.setText(String.valueOf(DonnerData.getHeight()));
                 GenericTypeIndicator<HashMap<String,Donnation>> donnationsGeneric  =  new GenericTypeIndicator<HashMap<String,Donnation>>() { };
                 HashMap<String, Donnation> donationsData = dataSnapshot.child("Donations").getValue(donnationsGeneric);
-                ArrayList<Donnation> valuesList = new ArrayList<Donnation>(donationsData.values());
-                Log.e("donations : ", String.valueOf(valuesList));
+                HashMap<String, Donnation> filteredDonationsData = (HashMap<String, Donnation>) donationsData
+                        .entrySet()
+                        .stream()
+                        .filter(donation -> uid.equals(donation.getValue().getUserUID()))
+                        .collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue()));
+                ArrayList<Donnation> valuesList = new ArrayList<Donnation>(filteredDonationsData.values());
                 Donations.clear();
                 Donations.addAll(valuesList);
                 adapter.notifyDataSetChanged();
