@@ -88,7 +88,7 @@ public class Profile extends AppCompatActivity {
         callButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V) {
-                String s = "tel:"+"Number";
+                String s = "tel:"+"+620787212";
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse(s));
                 startActivity(intent);
@@ -99,7 +99,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View V) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.putExtra("sms_body", "default content");
+                sendIntent.putExtra("sms_body", "Votre resulat est pret a etre pris au Centre National De Transfusion Sanguine - Rabat ");
                 sendIntent.setType("vnd.android-dir/mms-sms");
                 startActivity(sendIntent);
             }
