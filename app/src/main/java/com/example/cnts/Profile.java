@@ -3,7 +3,11 @@ package com.example.cnts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.content.pm.PackageManager;
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +36,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Profile extends AppCompatActivity {
+    private static final int REQUEST_CALL = 1;
     Button callButton,sendSMS,addDonation;
     String uid;
     private DatabaseReference mDatabase;
@@ -88,10 +94,7 @@ public class Profile extends AppCompatActivity {
         callButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V) {
-                String s = "tel:"+"+620787212";
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse(s));
-                startActivity(intent);
+                makePhoneCall();
             }
         });
         sendSMS = (Button)findViewById(R.id.request);
@@ -120,4 +123,25 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-}
+    private void makePhoneCall() {
+        if (ContextCompat.checkSelfPermission(Profile.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(Profile.this,
+                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+        } else {
+            String dial = "tel:" + "+212620787212";
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+        }
+    }
+        @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if ( grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    }
+    
